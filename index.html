@@ -175,28 +175,31 @@
     <div class="w3-content w3-margin-top" id="portifolio" style="display: none;">
         <div class="w3-container">
             <p class="w3-large">
-                <a href="/curriculo" id="a-curriculo">
+                <button id="a-curriculo" class="w3-btn ">
                     <b><i class="fa fa-arrow-left fa-fw w3-margin-right w3-text-teal"></i>Voltar</b>
-                </a>
+                </button>
             </p>
         </div>
 
-        <div>
-            <button id="retrocederImagem" class="w3-btn w3-teal">
+        <div class="w3-bar">
+            <button id="retrocederImagem" class="w3-button w3-left w3-teal">
                 Anterior
             </button>
-             <button id="avancarImagem" class="w3-btn w3-teal">
+             <button id="avancarImagem" class="w3-button w3-right w3-teal">
                 Próximo
             </button>
-            <a href="img/arquivo_01.png" download="arquivo_01.png" id="baixarImagem" class="w3-btn w3-teal">
-                <i class="fas fa-download"></i> Baixar
-            </a>
         </div>
 
         <div class="w3-card w3-row-padding" id="galeria" style="margin-top: 1%;">
-            <p id="img_descricao">
-                Render 01
+            <p>
+                <span id="img_descricao">Render 01</span>
+                <a href="img/arquivo_01.png" download="arquivo_01.png" id="baixarImagem" class="w3-btn w3-teal">
+                 <i class="fas fa-download"></i>
+                </a>
             </p>
+
+            
+
             <img id="img" src="img/arquivo_01.png" class="img-limitada">
 
             <input type="hidden" id="img_atual" value="0">
