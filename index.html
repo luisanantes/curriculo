@@ -9,6 +9,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
+     <link rel="preload" as="render_01" href="img/render_01.png">
+     <link rel="preload" as="render_02" href="img/render_02.png">
+     <link rel="preload" as="render_03" href="img/render_03.png">
+     <link rel="preload" as="render_04" href="img/render_04.png">
+     <link rel="preload" as="render_05" href="img/render_05.svg">
+     <link rel="preload" as="render_06" href="img/render_06.svg">
+     <link rel="preload" as="render_07" href="img/render_07.svg">
+     <link rel="preload" as="render_08" href="img/render_08.svg">
+
+
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -27,7 +38,7 @@
   <body class="w3-light-grey" cz-shortcut-listen="true">
   
     <!-- Page Container -->
-    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-content w3-margin-top" style="max-width:85%;" id="curriculo">
   
       <!-- The Grid -->
       <div class="w3-row-padding">
@@ -46,6 +57,12 @@
               <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>luisa.nantess@gmail.com</p>
               <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>(67) 9 8483-5941</p>
               <hr>
+
+              <p class="w3-large">
+                <a href="#portifolio" id="a-portifolio">
+                    <b><i class="fa fa-picture-o fa-fw w3-margin-right w3-text-teal"></i>Portifóflio</b>
+                </a>
+              </p>
   
               <p class="w3-large">
                 <b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Softwares</b>
@@ -154,13 +171,90 @@
   
       <!-- End Page Container -->
     </div>
+
+    <div class="w3-content w3-margin-top" id="portifolio" style="display: none;">
+        <div class="w3-container">
+            <p class="w3-large">
+                <a href="/" id="a-curriculo">
+                    <b><i class="fa fa-arrow-left fa-fw w3-margin-right w3-text-teal"></i>Voltar</b>
+                </a>
+            </p>
+        </div>
+
+        <div>
+            <button id="retrocederImagem" class="w3-btn w3-teal">
+                Anterior
+            </button>
+             <button id="avancarImagem" class="w3-btn w3-teal">
+                Próximo
+            </button>
+            <a href="img/arquivo_01.png" download="arquivo_01.png" id="baixarImagem" class="w3-btn w3-teal">
+                <i class="fas fa-download"></i> Baixar
+            </a>
+        </div>
+
+        <div class="w3-card w3-row-padding" id="galeria" style="margin-top: 1%;">
+            <p id="img_descricao">
+                Render 01
+            </p>
+            <img id="img" src="img/arquivo_01.png" class="img-limitada">
+
+            <input type="hidden" id="img_atual" value="0">
+        </div>
+    </div>
   
     <footer class="w3-container w3-teal w3-center w3-margin-top">
       Minhas Redes Sociais <br>
       <a href="https://instagram.com/luisa.nantes" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i> Instagram</a><br>
       <a href="https://www.linkedin.com/in/lu%C3%ADsa-herculano-nantes-1b122a361" target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i> Linkedin</a>
     </footer>
-  
+
+    <script>
+        const listaDeImagens = [
+            { img: "arquivo_01.png", legenda: "Render loteamento 01" },
+            { img: "arquivo_02.png", legenda: "Render loteamento 02" },
+            { img: "arquivo_03.png", legenda: "Render loteamento 03" },
+            { img: "arquivo_04.png", legenda: "Detalhamento" },
+            { img: "arquivo_05.svg", legenda: "Vista Fachada" },
+            { img: "arquivo_06.svg", legenda: "Vista Diagonal" },
+            { img: "arquivo_07.svg", legenda: "Planta 01" },
+            { img: "arquivo_08.svg", legenda: "Vista Janela" },
+        ];
+
+        document.getElementById('avancarImagem').addEventListener('click', e => {
+            let imgAtual = parseInt(document.getElementById('img_atual').value);
+            imgAtual = imgAtual == listaDeImagens.length - 1 ? imgAtual : imgAtual + 1;
+
+            img.src = 'img/' + listaDeImagens[imgAtual].img;
+            img_descricao.innerText = listaDeImagens[imgAtual].legenda;
+            img_atual.value = imgAtual;
+            document.getElementById('baixarImagem').href = 'img/' + listaDeImagens[imgAtual].img
+            document.getElementById('baixarImagem').download = listaDeImagens[imgAtual].img
+        });
+
+        document.getElementById('retrocederImagem').addEventListener('click', e => {
+            let imgAtual = parseInt(document.getElementById('img_atual').value);
+            imgAtual = imgAtual == 0 ? imgAtual : imgAtual - 1;
+
+            img.src = 'img/' + listaDeImagens[imgAtual].img;
+            img_descricao.innerText = listaDeImagens[imgAtual].legenda;
+            img_atual.value = imgAtual;
+            document.getElementById('baixarImagem').href = 'img/' + listaDeImagens[imgAtual].img
+            document.getElementById('baixarImagem').download = listaDeImagens[imgAtual].img
+        });
+
+
+        document.getElementById('a-portifolio').addEventListener('click', () => {
+            document.getElementById('curriculo').style.display = 'none';
+            document.getElementById('portifolio').style.display = 'block'
+        });
+
+        document.getElementById('a-curriculo').addEventListener('click', () => {
+            document.getElementById('portifolio').style.display = 'none';
+            document.getElementById('curriculo').style.display = 'block'
+        });
+
+    </script>
   </body>
 
 </html>
